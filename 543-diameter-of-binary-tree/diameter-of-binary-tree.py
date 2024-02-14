@@ -1,3 +1,4 @@
+from functools import lru_cache
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -5,6 +6,7 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+    @lru_cache(maxsize=None)
     def getMaxHeight(self, root):
         if not root:
             return(0)
