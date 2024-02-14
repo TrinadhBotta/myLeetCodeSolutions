@@ -6,19 +6,12 @@
 #         self.right = None
 
 class Solution:
-    def get_path(self, r, node, l):
-        if r.val == node:
-            return(l+[r])
-        if r.val > node:
-            return(self.get_path(r.left, node, l+[r]))
-        else:
-            return(self.get_path(r.right, node, l+[r]))
-    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
-        p1 = self.get_path(root,p.val,[])
-        p2 = self.get_path(root,q.val,[])
-        for i in range(min(len(p1),len(p2))):
-            if p1[i]!=p2[i]:
-                return(p1[i-1])
-        return(p1[i])
 
-        
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        if root.val<= p.val and root.val >= q.val:
+            return(root)
+        if root.val<= q.val and root.val >= p.val:
+            return(root)
+        if root.val>p.val and root.val>q.val:
+            return(self.lowestCommonAncestor(root.left, p, q))
+        return(self.lowestCommonAncestor(root.right, p, q))
