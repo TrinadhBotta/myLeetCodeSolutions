@@ -1,13 +1,13 @@
 class Solution:
-    def binary_check(self,l,h,target,arr):
+    def search(self, nums: List[int], target: int) -> int:
+        h = len(nums)-1
+        l = 0
         while h>=l:
             m = (l+h)//2
-            if arr[m] == target:
+            if nums[m] == target:
                 return(m)
-            if arr[m]>target:
+            if nums[m]>target:
                 h=m-1
             else:
                 l=m+1
         return(-1)
-    def search(self, nums: List[int], target: int) -> int:
-        return(self.binary_check(0,len(nums)-1,target,nums))
