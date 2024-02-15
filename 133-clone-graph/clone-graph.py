@@ -30,6 +30,8 @@ class Solution:
                         else:
                             new_node = d[neighbor_node.val]
                         clone_node.neighbors.append(new_node)
+                        new_node.neighbors.append(clone_node)
                         queue.append(neighbor_node)
                         seen.add((main_node.val,neighbor_node.val))
+                        seen.add((neighbor_node.val,main_node.val))
         return(clone)
