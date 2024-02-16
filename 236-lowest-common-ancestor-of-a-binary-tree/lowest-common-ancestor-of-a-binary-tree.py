@@ -6,7 +6,7 @@
 #         self.right = None
 
 class Solution:
-    @lru_cache(maxsize = 10000)
+    @lru_cache(maxsize = None)
     def check(self, root, val):
         if not root:
             return(False)
