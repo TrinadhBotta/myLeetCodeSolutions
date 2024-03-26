@@ -14,7 +14,7 @@ class Solution:
             return(False)
         return(self.isBalanced(root.left) and self.isBalanced(root.right))
     
-    # @lru_cache(maxsize=None)
+    
     def height(self,root):
         if not root:
             return(0)
