@@ -10,7 +10,7 @@ class Solution:
             c+=1
             d[c]=i
             if c>=k:
-                right_side = n-i-1+1
+                right_side = n-i
                 left_side = d[c-k+1]-s+1
                 s=d[c-k+1]+1
                 ans+=right_side*left_side
