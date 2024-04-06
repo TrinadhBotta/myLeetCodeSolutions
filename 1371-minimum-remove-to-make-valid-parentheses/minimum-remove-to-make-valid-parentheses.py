@@ -3,18 +3,18 @@ class Solution:
         a='('
         b=')'
         stack=[]
-        del_set = set()
+        
         for i in range(len(s)):
             if s[i]!=a and s[i]!=b:
                 continue
             if stack and stack[-1][0]==a and s[i]==b:
-                del_set.remove(stack[-1][1])
                 stack.pop()
             else:
                 stack.append((s[i],i))
-                del_set.add(i)
+                
         
         ans=''
+        del_set = set(i[1] for i in stack)
         for i in range(len(s)):
             if i not in del_set:
                 ans+=s[i]
