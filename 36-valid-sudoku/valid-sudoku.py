@@ -10,5 +10,5 @@ class Solution:
                     res.add((i, element))
                     res.add((element, j))
                     res.add((i // 3, j // 3, element))
-                    print(res)
+
         return True
