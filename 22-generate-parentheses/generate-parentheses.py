@@ -6,7 +6,9 @@ class Solution:
             return
         if o>c:
             self.rec(s+")",o,c+1,n-1)
-        self.rec(s+"(",o+1,c,n-1)
+        if o-c<n:
+            self.rec(s+"(",o+1,c,n-1)
+        return
 
 
     def generateParenthesis(self, n: int) -> List[str]:
