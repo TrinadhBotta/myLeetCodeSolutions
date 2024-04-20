@@ -1,4 +1,5 @@
 class Solution:
+    @lru_cache(maxsize = 100)
     def rec(self, s, o, c,n):
         if n==0:
             if o==c:
