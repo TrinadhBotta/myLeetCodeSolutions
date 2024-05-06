@@ -1,18 +1,27 @@
-from functools import lru_cache
 # Definition for a binary tree node.
-# class TreeNode:
+# class TreeNode(object):
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution:
-    @lru_cache(maxsize=None)
-    def getMaxHeight(self, root):
-        if not root:
-            return(0)
-        return(1+max(self.getMaxHeight(root.left),self.getMaxHeight(root.right)))
 
-    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+
+from functools import lru_cache 
+
+class Solution(object):
+    @lru_cache(maxsize=None)
+    def maxPath(self, root):
         if not root:
             return(0)
-        return(max(self.getMaxHeight(root.left)+self.getMaxHeight(root.right), self.diameterOfBinaryTree(root.left), self.diameterOfBinaryTree(root.right)))
+        return(1+max(self.maxPath(root.left), self.maxPath(root.right)))
+
+    def diameterOfBinaryTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root:
+            return(0)
+        l = self.maxPath(root.left)
+        r = self.maxPath(root.right)
+        return(max(l+r, self.diameterOfBinaryTree(root.left),self.diameterOfBinaryTree(root.right)))
