@@ -9,7 +9,7 @@
 from functools import lru_cache 
 
 class Solution(object):
-    @lru_cache(maxsize=1000)
+    @lru_cache(maxsize=10000)
     def maxPath(self, root):
         if not root:
             return(0)
