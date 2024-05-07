@@ -13,7 +13,6 @@ class Solution:
         ans=[]
         while len(q)>0:
             r,l=q.popleft()
-            print(r.val,l)
             if l>len(ans):
                 ans.append([])
             ans[l-1].append(r.val)
