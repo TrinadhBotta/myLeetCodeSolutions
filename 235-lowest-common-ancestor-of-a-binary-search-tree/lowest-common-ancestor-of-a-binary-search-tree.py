@@ -4,14 +4,6 @@
 #         self.left = None
 #         self.right = None
 
-def ancestor(root,l,n):
-    if root.val==n:
-        l.append(root)
-        return(l)
-    if root.val>n:
-        return(ancestor(root.left,l+[root],n))
-    else:
-        return(ancestor(root.right,l+[root],n))
 
 def rec(root,a,b):
     if not root:
@@ -29,10 +21,3 @@ def rec(root,a,b):
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         return(rec(root, p.val, q.val))
-        l1 = ancestor(root,[],p.val)
-        s=set(i.val for i in l1)
-        l2 = ancestor(root,[],q.val)
-        l2=l2[::-1]
-        for i in l2:
-            if i.val in s:
-                return(i)
