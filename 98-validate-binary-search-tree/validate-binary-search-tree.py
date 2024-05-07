@@ -1,25 +1,22 @@
-from collections import Counter
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution:
-    def preorder(self,node,l):
-        if not node:
-            return(l)
-        l = self.preorder(node.left,l)
-        l.append(node.val)
-        l = self.preorder(node.right,l)
-        return(l)
 
+class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        l = self.preorder(root,[])
-        if not l:
-            return(True)
-        if l == sorted(l):
-            d = Counter(l)
-            if len(d)==len(l):
+        
+        def rec(root, left, right):
+            if not root:
                 return(True)
-        return(False)
+            
+            if not( root.val<right and root.val>left):
+                return(False)
+            
+            return(rec(root.left, left, root.val) and
+                rec(root.right, root.val, right))
+        
+        return(rec(root, -float('inf'), float('inf')))
+
