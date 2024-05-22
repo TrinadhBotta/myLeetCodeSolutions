@@ -17,7 +17,5 @@ class TimeMap:
     def get(self, key: str, timestamp: int) -> str:
         if key not in self.ml or timestamp<self.ml[key][0]:
             return('')
-        if len(self.m[key])==1:
-            return(self.m[key][0])
         x=bisect_right(self.ml[key],timestamp)
         return(self.m[key][x-1])
