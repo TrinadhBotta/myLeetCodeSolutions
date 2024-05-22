@@ -1,4 +1,4 @@
-from bisect import bisect_left
+from bisect import bisect_right
 class TimeMap:
 
     def __init__(self):
@@ -19,10 +19,5 @@ class TimeMap:
             return('')
         if len(self.m[key])==1:
             return(self.m[key][0])
-        x=bisect_left(self.ml[key],timestamp)
-        if x>=len(self.ml[key]):
-            return(self.m[key][-1])
-        elif self.ml[key][x]==timestamp:
-            return(self.m[key][x])
-        else:
-            return(self.m[key][x-1])
+        x=bisect_right(self.ml[key],timestamp)
+        return(self.m[key][x-1])
