@@ -4,11 +4,12 @@ class Solution(object):
         :type n: int
         :rtype: bool
         """
-        def square(x):
-            x = str(x)
+        def square(n):
             ans = 0
-            for i in x:
-                ans+=int(i)*int(i)
+            while n:
+                d = n%10
+                ans+=d*d
+                n = n//10
             return(ans)
         
         v = set()
