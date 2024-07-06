@@ -1,6 +1,11 @@
-from collections import Counter
-class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        char_count1 = Counter(s)
-        char_count2 = Counter(t)
-        return(char_count1 == char_count2)
+class Solution(object):
+    def isAnagram(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+        s=''.join(sorted(s))
+        t=''.join(sorted(t))
+        return(s==t)
+        
