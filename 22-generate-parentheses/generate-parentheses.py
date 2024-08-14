@@ -1,17 +1,16 @@
 class Solution:
-    def rec(self, s, o, c,n):
-        if n==0:
-            if o==c:
-                self.ans.append(s)
+    def rec(self, s, o, c):
+        if o==0 and c==0:
+            self.ans.append(s)
             return
-        if o>c:
-            self.rec(s+")",o,c+1,n-1)
-        if o-c<n:
-            self.rec(s+"(",o+1,c,n-1)
+        if o>=1:
+            self.rec(s+"(",o-1,c)
+        if c>o:
+            self.rec(s+")",o,c-1)
         return
 
 
     def generateParenthesis(self, n: int) -> List[str]:
         self.ans = []
-        self.rec('(',1,0,2*n-1)
+        self.rec('',n,n)
         return(self.ans)
