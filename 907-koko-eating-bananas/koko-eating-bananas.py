@@ -16,7 +16,7 @@ class Solution:
         while high>=low:
             mid = (low+high)//2
             if compute(mid):
-                ans=min(ans,mid)
+                ans=mid
                 high = mid-1
             else:
                 low = mid+1
