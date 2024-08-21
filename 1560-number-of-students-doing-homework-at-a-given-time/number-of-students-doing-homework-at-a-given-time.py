@@ -6,10 +6,5 @@ class Solution(object):
         :type queryTime: int
         :rtype: int
         """
-        ans = 0
-        for i in range(len(startTime)):
-            if startTime[i]<=queryTime and endTime[i]>=queryTime:
-                ans+=1
-        
-        return(ans)
+        return sum(1 for i in range(len(startTime)) if startTime[i] <= queryTime <= endTime[i])
         
