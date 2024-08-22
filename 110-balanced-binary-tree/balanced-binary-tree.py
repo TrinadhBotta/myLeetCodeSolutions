@@ -1,10 +1,10 @@
+from functools import lru_cache
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
 #         self.right = right
-from functools import lru_cache
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
         if not root:
@@ -15,7 +15,7 @@ class Solution:
             return(False)
         return(self.isBalanced(root.left) and self.isBalanced(root.right))
     
-    @lru_cache(maxsize=None)
+    @lru_cache(maxsize=10000)
     def height(self,root):
         if not root:
             return(0)
