@@ -1,10 +1,15 @@
-class Solution:
-    def maxProfit(self, prices: List[int]) -> int:
-        rmax=[-float('inf')]
-        n=len(prices)
-        for i in range(len(prices)):
-            rmax.append(max(rmax[-1],prices[n-i-1]))
-        ans=0
-        for i in range(n):
-            ans=max(ans,rmax[n-i]-prices[i])
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        buy = prices[0]
+        ans = 0
+        for i in range(1, len(prices)):
+            if prices[i]>buy:
+                ans = max(ans, prices[i]-buy)
+            elif prices[i]<buy:
+                buy = prices[i]
+        
         return(ans)
