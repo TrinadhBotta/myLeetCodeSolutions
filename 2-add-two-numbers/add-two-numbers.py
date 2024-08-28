@@ -12,7 +12,7 @@ class Solution(object):
         :rtype: ListNode
         """
         carry = 0
-        head = ListNode(0)  # Dummy node to start the linked list
+        head = ListNode(0)  
         temp = head
 
         while l1 or l2 or carry:
