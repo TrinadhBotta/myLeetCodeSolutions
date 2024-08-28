@@ -3,6 +3,7 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+
 class Solution(object):
     def addTwoNumbers(self, l1, l2):
         """
@@ -10,47 +11,27 @@ class Solution(object):
         :type l2: ListNode
         :rtype: ListNode
         """
-        def rev(root):
-            curr, prev= root, None
-            while curr:
-                nex = curr.next
-                curr.next = prev
-                prev = curr
-                curr = next
-            return(prev)
-        
-        # l1, l2 = rev(l1), rev(l2)
-        value = (l1.val+l2.val)%10
-        carry = (l1.val+l2.val)//10
-
-        head = ListNode(value)
+        carry = 0
+        head = ListNode(0)  # Dummy node to start the linked list
         temp = head
-        l1,l2 = l1.next, l2.next
 
-        while l1 and l2:
-            value = (l1.val+l2.val+carry)%10
-            carry = (l1.val+l2.val+carry)//10
+        while l1 or l2 or carry:
+            value1 = l1.val if l1 else 0
+            value2 = l2.val if l2 else 0
+
+            # Calculate the sum and carry
+            total = value1 + value2 + carry
+            carry = total // 10
+            value = total % 10
+
+            # Create a new node with the computed value
             temp.next = ListNode(value)
             temp = temp.next
-            l1,l2 = l1.next, l2.next
-        
-        while l1:
-            value = (l1.val+carry)%10
-            carry = (l1.val+carry)//10
-            temp.next = ListNode(value)
-            temp = temp.next
-            l1 = l1.next
-        
-        while l2:
-            value = (l2.val+carry)%10
-            carry = (l2.val+carry)//10
-            temp.next = ListNode(value)
-            temp = temp.next
-            l2 = l2.next
 
-        if carry!=0:
-            temp.next = ListNode(carry)
-        
-        return(head)
+            # Move to the next nodes in l1 and l2
+            if l1: 
+                l1 = l1.next
+            if l2: 
+                l2 = l2.next
 
-        
+        return head.next  # Return the real head (next of the dummy node)
