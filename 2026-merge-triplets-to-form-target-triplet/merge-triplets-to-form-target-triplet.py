@@ -6,7 +6,6 @@ class Solution(object):
         :rtype: bool
         """
         a, b, c = False, False, False
-        l = []
 
         for i in triplets:
             if i[0]>target[0] or i[1]>target[1] or i[2]>target[2]:
