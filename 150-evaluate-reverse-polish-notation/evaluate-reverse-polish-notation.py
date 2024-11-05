@@ -2,17 +2,21 @@ from collections import deque
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
         stack = []
-        for t in tokens:
-            if t not in "+-*/":
-                stack.append(int(t))
-            else:
-                r, l = stack.pop(), stack.pop()
-                if t == "+":
-                    stack.append(l+r)
-                elif t == "-":
-                    stack.append(l-r)
-                elif t == "*":
-                    stack.append(l*r)
+        s = set(["+","-","*","/"])
+
+        for i in tokens:
+            if i in s:
+                a = stack.pop()
+                b = stack.pop()
+                if i == "+":
+                    stack.append(a+b)
+                elif i == "-":
+                    stack.append(b-a)
+                elif i == "*":
+                    stack.append(a*b)
                 else:
-                    stack.append(int(float(l)/r))
-        return stack.pop()
+                    stack.append(int(b/a))
+            else:
+                stack.append(int(i))
+        return(stack[0])
+                
