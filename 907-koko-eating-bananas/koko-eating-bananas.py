@@ -2,23 +2,25 @@ import math
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
 
-        def compute(k):
-            s=0
+        def check(val):
+            th = 0
             for i in piles:
-                s+=math.ceil(i/k)
-            print(s)
-            return(True if s<=h else False)
+                th+=math.ceil(i/val)
+            if th<=h:
+                return(True)
+            return(False)
         
-        low = 1
-        high = max(piles)
+        l = 1
+        hl = sum(piles)
+        if hl<=h:
+            return(1)
 
-        ans = high
-        while high>=low:
-            mid = (low+high)//2
-            if compute(mid):
-                ans=mid
-                high = mid-1
+        while l<=hl:
+            m = (l+hl)//2
+            print(m,l,hl)
+            if check(m):
+                if not check(m-1):
+                    return(m)
+                hl=m-1
             else:
-                low = mid+1
-        
-        return(ans)
+                l=m+1
