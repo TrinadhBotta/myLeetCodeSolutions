@@ -10,7 +10,7 @@ class Solution(object):
         while l<=h:
             m = (l+h)//2
             if nums[m]>=nums[h]:
-                mn = min(nums[h],mn)
+                mn = nums[h]
                 l = m+1
             else:
                 h = m
