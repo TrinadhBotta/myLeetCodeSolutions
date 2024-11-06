@@ -1,20 +1,19 @@
 class Solution:
     def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
-        pos_speed = []
-        for i in range(len(position)):
-            pos_speed.append((position[i], speed[i]))
-        
-        pos_speed.sort()
-        stack = []
+        if len(position)==0:
+            return(0)
+        ans = 1
 
-        for i in range(len(position)):
-            stack.append((target-pos_speed[i][0])/pos_speed[i][1])
-        
-        ans = 0
-        while stack:
-            cur = stack.pop()
-            ans+=1
-            while stack and stack[-1]<=cur:
-                stack.pop()
+        time = [(position[i],(target-position[i])/speed[i]) for i in range(len(position))]
+        time.sort()
+    
+
+        cur = time.pop()[1]
+        while time:
+            while time and cur>=time[-1][1]:
+                time.pop()
+            if time:
+                cur = time.pop()[1]
+                ans+=1
         
         return(ans)
