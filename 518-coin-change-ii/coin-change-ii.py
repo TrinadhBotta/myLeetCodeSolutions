@@ -8,11 +8,11 @@ class Solution(object):
         if amount == 0:
             return(1)
         dp = [0]*(amount+1)
-        coins.sort()
+        # coins.sort()
         
         for i in coins:
             if i > amount:
-                break
+                continue
             dp[i]+=1
             for j in range(i+1, amount+1):
                 dp[j]+= dp[j-i]
