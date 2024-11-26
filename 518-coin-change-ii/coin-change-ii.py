@@ -8,7 +8,6 @@ class Solution(object):
         if amount == 0:
             return(1)
         dp = [0]*(amount+1)
-        # coins.sort()
         
         for i in coins:
             if i > amount:
