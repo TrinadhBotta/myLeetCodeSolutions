@@ -9,19 +9,20 @@
 from functools import lru_cache 
 
 class Solution(object):
-    @lru_cache(maxsize=10000)
-    def maxPath(self, root):
+    @lru_cache(maxsize=1000)
+    def maxDepth(self, root):
         if not root:
             return(0)
-        return(1+max(self.maxPath(root.left), self.maxPath(root.right)))
+        return(1+max(self.maxDepth(root.left), self.maxDepth(root.right)))
 
     def diameterOfBinaryTree(self, root):
         """
-        :type root: TreeNode
+        :type root: Optional[TreeNode]
         :rtype: int
         """
         if not root:
             return(0)
-        l = self.maxPath(root.left)
-        r = self.maxPath(root.right)
-        return(max(l+r, self.diameterOfBinaryTree(root.left),self.diameterOfBinaryTree(root.right)))
+        lmax = self.maxDepth(root.left)
+        rmax = self.maxDepth(root.right)
+
+        return(max(lmax+rmax, self.diameterOfBinaryTree(root.left), self.diameterOfBinaryTree(root.right)))
