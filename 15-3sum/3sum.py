@@ -8,8 +8,8 @@ class Solution(object):
         nums.sort()
         st = None
         for i in range(len(nums)):
-            if st == nums[i]:
-                continue
+            # if st == nums[i]:
+            #     continue
             st = nums[i]
             j = i+1
             k = len(nums)-1
