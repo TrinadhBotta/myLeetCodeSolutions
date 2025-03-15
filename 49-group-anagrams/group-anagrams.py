@@ -5,7 +5,6 @@ class Solution(object):
         :rtype: List[List[str]]
         """
         strs2 = [''.join(sorted(i)) for i in strs]
-        print(strs2)
         d={}
         ans=[]
         for i in range(len(strs)):
