@@ -2,16 +2,19 @@ from collections import Counter
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         d = Counter(nums)
-        ans=[]
-        l = [[] for i in nums]
+        cnt = [[] for i in range(len(nums)+1)]
+
+        for key in d:
+            cnt[d[key]].append(key)
         
-        for i in d:
-            l[d[i]-1].append(i)
-        
-        for i in range(len(l)-1,-1,-1):
-            for j in range(len(l[i])):
-                k-=1
-                ans.append(l[i][j])
-                if k==0:
+        ans = []
+
+        for i in range(len(cnt)-1,-1,-1):
+            for j in cnt[i]:
+                if k>0:
+                    ans.append(j)
+                    k-=1
+                else:
                     return(ans)
         
+        return(ans)
