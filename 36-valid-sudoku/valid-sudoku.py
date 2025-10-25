@@ -1,28 +1,23 @@
-class Solution(object):
-    def isValidSudoku(self, board):
-        """
-        :type board: List[List[str]]
-        :rtype: bool
-        """
-        r = {}
-        c = {}
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        r = [set() for i in range(9)]
+        c = [set() for i in range(9)]
+
         rc = {}
 
         for i in range(9):
-            r[i] = set()
-            c[i] = set()
-        
-        for i in range(9):
             for j in range(9):
-                val = board[i][j]
-                if val == ".":
+                if board[i][j] == ".":
                     continue
-                if (i//3,j//3) not in rc:
-                    rc[(i//3,j//3)] = set()
-                if val in r[i] or val in c[j] or val in rc[(i//3,j//3)]:
-                    return(False)
-                r[i].add(val)
-                c[j].add(val)
-                rc[(i//3,j//3)].add(val)
+                
+                curr = board[i][j]
+                rc_str = str(i//3)+str(j//3)
 
+                if (curr in r[i]) or (curr in c[j]) or (rc_str in rc and curr in rc[rc_str]):
+                    return(False)
+                
+                r[i].add(curr)
+                c[j].add(curr)
+                rc[rc_str] = rc.get(rc_str, set()) | set(curr)
+        
         return(True)
