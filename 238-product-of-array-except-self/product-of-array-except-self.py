@@ -3,9 +3,11 @@ class Solution:
         lp = [1 for i in nums]
         rp = [1 for i in nums]
 
-        for i in range(len(nums)-1):
-            lp[i+1] = lp[i]*nums[i]
-            rp[len(nums)-i-2] = rp[len(nums)-i-1]*nums[len(nums)-i-1]
-        
-        ans=[lp[i]*rp[i] for i in range(len(nums))]
+        n = len(nums)
+
+        for i in range(1,len(nums)):
+            lp[i] = lp[i-1]*nums[i-1]
+            rp[n-i-1] = rp[n-i]*nums[n-i] 
+
+        ans = [lp[i]*rp[i] for i in range(n)]
         return(ans)
