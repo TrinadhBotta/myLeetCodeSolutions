@@ -1,16 +1,13 @@
-class Solution(object):
-    def groupAnagrams(self, strs):
-        """
-        :type strs: List[str]
-        :rtype: List[List[str]]
-        """
-        strs2 = [''.join(sorted(i)) for i in strs]
-        d={}
-        ans=[]
-        for i in range(len(strs)):
-            if strs2[i] in d:
-                ans[d[strs2[i]]].append(strs[i])
-            else:
-                ans.append([strs[i]])
-                d[strs2[i]]=len(ans)-1
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        d = {}
+
+        for i in strs:
+            x = ''.join(sorted(i))
+            d[x] = d.get(x, [])+[i]
+
+        ans = []
+        for k in d:
+            ans.append(d[k])
+        
         return(ans)
