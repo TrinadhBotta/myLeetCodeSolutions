@@ -5,16 +5,21 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def rec(self, root, cmax):
-        if not root:
-            return
-        if root.val>=cmax:
-            self.ans+=1
-        self.rec(root.left, max(cmax,root.val))
-        self.rec(root.right, max(cmax,root.val))
-
-
     def goodNodes(self, root: TreeNode) -> int:
-        self.ans=0
-        self.rec(root, root.val)
+        self.ans = 1
+        
+        def check(r, mx):
+            if not r:
+                return
+            
+            if r.val>=mx:
+                self.ans+=1
+            
+            check(r.left, max(mx,r.val))
+            check(r.right, max(mx,r.val))
+            return
+        
+        check(root.left, root.val)
+        check(root.right, root.val)
+
         return(self.ans)
