@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
-        self.ans = 1
+        self.ans = 0
         
         def check(r, mx):
             if not r:
@@ -19,7 +19,6 @@ class Solution:
             check(r.right, max(mx,r.val))
             return
         
-        check(root.left, root.val)
-        check(root.right, root.val)
+        check(root, -10000000)
 
         return(self.ans)
