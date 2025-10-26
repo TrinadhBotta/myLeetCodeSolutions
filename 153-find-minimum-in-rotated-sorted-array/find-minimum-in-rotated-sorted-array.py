@@ -1,19 +1,14 @@
-class Solution(object):
-    def findMin(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        mn = 10000
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        ans = nums[0]
         l = 0
-        h = len(nums)-1
-        while l<=h:
-            m = (l+h)//2
-            if nums[m]>=nums[h]:
-                mn = nums[h]
-                l = m+1
-            else:
-                h = m
-        return(mn)
+        r = len(nums)-1
 
-        
+        while l<=r:
+            m = (l+r)//2
+            if nums[m]>nums[r]:
+                l=m+1
+            elif nums[l]<=nums[m]<=nums[r]:
+                return(nums[l])
+            else:
+                r=m
