@@ -11,13 +11,12 @@ class Solution:
             return(False)
         
         l = 1
-        hl = sum(piles)
-        if hl<=h:
+        hl = max(piles)
+        if sum(piles)<=h:
             return(1)
 
         while l<=hl:
             m = (l+hl)//2
-            print(m,l,hl)
             if check(m):
                 if not check(m-1):
                     return(m)
