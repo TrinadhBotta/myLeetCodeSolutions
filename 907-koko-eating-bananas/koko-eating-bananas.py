@@ -14,12 +14,15 @@ class Solution:
         hl = max(piles)
         if sum(piles)<=h:
             return(1)
+        
+        ans = hl
 
         while l<=hl:
             m = (l+hl)//2
             if check(m):
-                if not check(m-1):
-                    return(m)
+                ans = m
                 hl=m-1
             else:
                 l=m+1
+        
+        return ans
